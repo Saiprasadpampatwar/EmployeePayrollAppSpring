@@ -3,14 +3,15 @@ package com.saischool.employeepayrollapp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 @Slf4j
 public class EmployeepayrollappApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EmployeepayrollappApplication.class, args);
-        log.info("Employee Payroll App Started");
+        ApplicationContext context= SpringApplication.run(EmployeepayrollappApplication.class, args);
+        log.info("Employee Payroll App Started in {} environment",context.getEnvironment().getProperty("environment"));
     }
 
 }
