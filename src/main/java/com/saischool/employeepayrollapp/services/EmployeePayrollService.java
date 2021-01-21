@@ -23,15 +23,14 @@ public class EmployeePayrollService implements IEmployeePayrollService{
 
     @Override
     public List<EmployeePayrollData> getEmployeePayrollData() {
-        return employeePayrollList;
+        return employeePayrollRepository.findAll();
     }
 
     @Override
     public EmployeePayrollData getEmployeePayrollDataById(int empId) {
-        return employeePayrollList.stream()
-                                    .filter(empData->empData.getEmployeeId()==empId)
-                                    .findFirst()
-                                    .orElseThrow(()-> new EmployeePayrollException("Employee Not Found"));
+        return employeePayrollRepository.
+                findById(empId).
+                orElseThrow(()-> new EmployeePayrollException("Employee with empId "+empId+" does not exists"));
     }
 
     @Override
@@ -47,14 +46,13 @@ public class EmployeePayrollService implements IEmployeePayrollService{
     @Override
     public EmployeePayrollData updateEmployeePayrollData(int empId, EmployeePayrollDTO employeePayrollDTO) {
         EmployeePayrollData empData = this.getEmployeePayrollDataById(empId);
-        empData.setName(employeePayrollDTO.name);
-        empData.setSalary(employeePayrollDTO.salary);
-        employeePayrollList.set(empId-1,empData);
-        return empData;
+        empData.updateEmployeePayrollData(employeePayrollDTO);
+        return employeePayrollRepository.save(empData);
     }
 
     @Override
     public void deleteEmployeePayrollDTO(int empId) {
-        employeePayrollList.remove(empId-1);
+        EmployeePayrollData employeePayrollData = this.getEmployeePayrollDataById(empId);
+        employeePayrollRepository.delete(employeePayrollData);
     }
 }
