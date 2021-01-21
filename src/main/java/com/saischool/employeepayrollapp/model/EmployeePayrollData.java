@@ -1,11 +1,22 @@
 package com.saischool.employeepayrollapp.model;
 
 import com.saischool.employeepayrollapp.dto.EmployeePayrollDTO;
+import lombok.Data;
 
-public class EmployeePayrollData {
+import java.time.LocalDate;
+import java.util.List;
+
+public @Data class EmployeePayrollData {
+
     private int employeeId;
     private String name;
     private long salary;
+    public String gender;
+    public String imagePath;
+    public LocalDate startDate;
+    public String notes;
+    public List<String> departments;
+
 
     public EmployeePayrollData() { }
 
@@ -13,29 +24,11 @@ public class EmployeePayrollData {
         this.employeeId = employeeId;
         this.name = employeePayrollDTO.name;
         this.salary = employeePayrollDTO.salary;
+        this.imagePath= employeePayrollDTO.imagePath;
+        this.gender = employeePayrollDTO.gender;
+        this.startDate=employeePayrollDTO.startDate;
+        this.departments = employeePayrollDTO.departments;
+        this.notes = employeePayrollDTO.notes;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getSalary() {
-        return salary;
-    }
-
-    public void setSalary(long salary) {
-        this.salary = salary;
-    }
 }
