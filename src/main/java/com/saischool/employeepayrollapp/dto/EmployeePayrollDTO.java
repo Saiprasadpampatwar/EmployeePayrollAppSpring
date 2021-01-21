@@ -18,18 +18,18 @@ public @ToString class EmployeePayrollDTO {
     @Pattern(regexp = "^(male|female)$", message = "Invalid Employee Gender")
     public String gender;
 
-    @NotBlank(message = "ImagePath cannot be Empty")
+    @NotNull(message = "ImagePath cannot be Empty")
     public String imagePath;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd MMM yyyy")
     @NotNull(message = "start date should Not be Empty")
-    @PastOrPresent(message = "start date should be past or todays date")
+    @PastOrPresent(message = "start date should be past or today's date")
     public LocalDate startDate;
 
-    @NotBlank(message = "Note cannot be Empty")
+    @NotNull(message = "Note cannot be Empty")
     public String notes;
 
-    @NotBlank(message = "Department cannot be Empty")
+    @NotNull(message = "Department cannot be Empty")
     public List<String> departments;
 
     public int employeeId;
